@@ -63,22 +63,43 @@ will be traversed*/
   While loop allows for you to only move specified amount in the
   "coordinates" given when you call the function
   */
+void shoot();
+/*
+This is a funtion to shoot our ball launcher
+*/
+{
+	motor[Adolf] = 127;
+	motor[Ivan] = 127;
+	wait1Msec(1000);
+}
 }
 task autonomous()
 {
-	turnAmount(90);
-	/*
-	First time this function is called, it makes the bot turn 90
-	degrees exactly
-	*/
-  driveSquare(1,60);
+  	driveSquare(1,60);
   /*
   First time calling the function, it is to make the robot move
-  1 square at 60 motor power.
+  `1 square at 60 motor power.
   */
-  turnAmount(270);
-  driveSquare(3,60);
-
+	turnAmount(90);
+  /*
+  First time this function is called, it makes the bot turn 90
+  degrees exactly.
+  */
+	shoot();
+  /*
+  First time this funtion is called, having it shoot the ball.
+  */
+	driveSquare(0.5,60);
+	turnAmount(180);
+	
+  /*
+  The bot moves forward half a square at 60 motor power, then the bot
+  turns 90 degrees exactly.
+  */
+	driveSquare(1,120);
+  /*
+  The bot parks on the elevated square by moving forward 1 square at 120 power.
+  */
 }
 task usercontrol()
 {
@@ -109,13 +130,13 @@ task usercontrol()
 						//Launcher System
 						if(vexRT[Btn5U] == 1)
 						{
-							motor[Adolph] = 63;
-							motor[Ivan] = 63;
+							motor[Adolph] = 127;
+							motor[Ivan] = 127;
 						}
 						else if(vexRT[Btn5D] == 1)
 						{
-							motor[Adolph] = -63;
-							motor[Ivan] = -63;
+							motor[Adolph] = -127;
+							motor[Ivan] = -127;
 						}
 						else
 						{
