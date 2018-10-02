@@ -63,15 +63,14 @@ will be traversed*/
   While loop allows for you to only move specified amount in the
   "coordinates" given when you call the function
   */
-void shoot();
+void shoot(int shootTime)
 /*
 This is a funtion to shoot our ball launcher
 */
 {
-	motor[Rouf] = 127;
-	motor[Ivan] = 127;
-	wait1Msec(1000);
-}
+	motor[Rouf] = 60;
+	motor[Ivan] = 60;
+	wait1Msec(shootTime);
 }
 task autonomous()
 {
@@ -85,7 +84,7 @@ task autonomous()
   First time this function is called, it makes the bot turn 90
   degrees exactly.
   */
-	shoot();
+	shoot(1000);
   /*
   First time this funtion is called, having it shoot the ball.
   */
