@@ -73,34 +73,21 @@ This is a funtion to shoot our ball launcher
 	motor[Ivan] = 60;
 	wait1Msec(shootTime);
 }
-
+	
 task autonomous()
 {
-  	driveSquare(1,60);
-  /*
-  First time calling the function, it is to make the robot move
-  `1 square at 60 motor power.
-  */
-	turnAmount(90);
-  /*
-  First time this function is called, it makes the bot turn 90
-  degrees exactly.
-  */
-	shoot(1000);
-  /*
-  First time this funtion is called, having it shoot the ball.
-  */
-	driveSquare(0.5,60);
-	turnAmount(180);
-	
-  /*
-  The bot moves forward half a square at 60 motor power, then the bot
-  turns 90 degrees exactly.
-  */
-	driveSquare(1,120);
-  /*
-  The bot parks on the elevated square by moving forward 1 square at 120 power.
-  */
+  shoot(1000);
+	//Shooty boi
+	driveSquare(2,127);
+	//drives 2 squares a MAXIMUM EFFORT
+	driveSquare(2,-127);
+	//drives backwards 2 squares at MAXIMUM EFFORT
+	turnAmount(-90);
+	//turns 90 degrees counterclockwise
+	driveSquare(1.5,127);
+	//drives 1.5 squares forward at MAXIMUM EFFORT
+	turnAmount(-90);
+	driveSquare(1,127);
 }
 task usercontrol()
 {
