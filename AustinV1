@@ -47,12 +47,36 @@ that will be traveled and the speed in which they
 will be traversed*/
 {
 	SensorValue [LeftEncoder] = 0;
-	int goalDistance = (28 * distance * 25);
+	int goalDistance = (1001 * distance);
 	/*sets the distance traveled to our constant, which is 28,
 	times the amount of squares needed, which one is 25, then
 	multiplies the entire thing by the amount of squares needed,
 	*/
   while(abs(SensorValue[LeftEncoder] < goalDistance))
+  {
+  	motor[BillandBob] = power;
+  	motor[FredandJoseph] = power;
+  }
+  motor[BillandBob] = 0;
+  motor[FredandJoseph] = 0;
+  /*
+  While loop allows for you to only move specified amount in the
+  "coordinates" given when you call the function
+  */
+}
+void drivesquareReverse (int distance, int power)
+/* this sets it so that when the function is called
+there is a set of parentheses with the #of squares
+that will be traveled and the speed in which they
+will be traversed*/
+{
+	SensorValue [LeftEncoder] = 0;
+	int goalDistance = (-1001 * distance);
+	/*sets the distance traveled to our constant, which is 28,
+	times the amount of squares needed, which one is 25, then
+	multiplies the entire thing by the amount of squares needed,
+	*/
+  while(abs(SensorValue[LeftEncoder] > goalDistance))
   {
   	motor[BillandBob] = power;
   	motor[FredandJoseph] = power;
