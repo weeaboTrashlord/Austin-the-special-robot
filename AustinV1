@@ -6,8 +6,6 @@
 #pragma config(Motor,  port2,           FredandJoseph, tmotorNone, openLoop)
 #pragma config(Motor,  port4,           Pablo,         tmotorNone, openLoop)
 #pragma config(Motor,  port5,           Raaj,          tmotorNone, openLoop)
-//#pragma config(Motor,  port6,           Rouf,        tmotorNone, openLoop)
-//#pragma config(Motor,  port7,           Ivan,          tmotorNone, openLoop)
 #pragma config(Motor,  port7,          Schmeckle,     tmotorNone, openLoop)
 #pragma config(Motor, port1,           Francis,       tmotorNone, openLoop)
 #pragma config(Motor, port10,           Xavier,       tmotorNone, openLoop)
@@ -64,7 +62,7 @@ will be traversed*/
   motor[BillandBob] = 0;
   motor[FredandJoseph] = 0;
   motor[Francis] = 0;
-  motor[Xavier = 0;
+  motor[Xavier] = 0;
   /*
   While loop allows for you to only move specified amount in the
   "coordinates" given when you call the function
@@ -97,18 +95,18 @@ will be traversed*/
 /*void shoot(int shootTime)
 /*
 This is a funtion to shoot our ball launcher
-*/
+
 {
 	motor[Rouf] = 60;
 	motor[Ivan] = 60;
 	wait1Msec(shootTime);
 }
-*/	
+*/
 task autonomous()
 {
 	driveSquare(2,127);
 	//drives 2 squares a MAXIMUM EFFORT
-	driveSquare(2,-127);
+	drivesquareReverse(2,-127);
 	//drives backwards 2 squares at MAXIMUM EFFORT
 	turnAmount(-90);
 	//turns 90 degrees counterclockwise
@@ -146,7 +144,7 @@ task usercontrol()
 				}
 
 						//Launcher System
-						*/if(vexRT[Btn5U] == 1)
+						/*if(vexRT[Btn5U] == 1)
 						{
 							motor[Rouf] = 127;
 							motor[Ivan] = 127;
@@ -159,7 +157,8 @@ task usercontrol()
 						else
 						{
 							motor[Rouf] = 0;
-							motor[Ivan] = 0; */
+							motor[Ivan] = 0;
+							*/
 								//Claw System
 							if(vexRT[Btn8U]==1)
 							{
@@ -190,4 +189,3 @@ task usercontrol()
 				}
 			}
 		}
-	}
