@@ -100,8 +100,6 @@ This is a funtion to shoot our ball launcher
 	
 task autonomous()
 {
-  shoot(1000);
-	//Shooty boi
 	driveSquare(2,127);
 	//drives 2 squares a MAXIMUM EFFORT
 	driveSquare(2,-127);
