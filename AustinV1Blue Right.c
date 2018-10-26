@@ -17,17 +17,20 @@
 void pre_auton()
 {
   bStopTasksBetweenModes = true;
+  SensorType[Gyroscope] = sensorNone;
+  wait1Msec(1000);
+  SensorType[Gyroscope] = sensorGyro;
+  wait1Msec(2000);
+  SensorScale[Gyroscope] = 150;
 }
-#define abs(X) ((X < 0) ? -1 * X : X)
-//Lets the absolute value function work
-void turnAmount (int degreeInTens)
+void turnLeft (int degreeInTens)
 /*
 Allows for the degree # when you call the function
 to look like an actual degree amount, as opposed to
 a 4 digit number
 */
 {
-	int degreeInOnes = (degreeInTens * 10);
+	int degreeInOnes = (degreeInTens * 8.333);
 	while(abs(SensorValue[Gyroscope]) < degreeInOnes)
 	/*
 	while loop allows for the gyroscope to turn a specific amount,
@@ -36,6 +39,26 @@ a 4 digit number
 	{
 		motor[BillandBob] = 60;
 		motor[FredandJoseph] = -60;
+	}
+	motor[BillandBob] = 0;
+	motor[FredandJoseph] = 0;
+}
+void turnRight (int degreeInTens)
+/*
+Allows for the degree # when you call the function
+to look like an actual degree amount, as opposed to
+a 4 digit number
+*/
+{
+	int degreeInOnes = (degreeInTens * 8.333);
+	while(abs(SensorValue[Gyroscope]) < degreeInOnes)
+	/*
+	while loop allows for the gyroscope to turn a specific amount,
+	as specified when the function is called
+	*/
+	{
+		motor[BillandBob] = -60;
+		motor[FredandJoseph] = 60;
 	}
 	motor[BillandBob] = 0;
 	motor[FredandJoseph] = 0;
@@ -52,17 +75,13 @@ will be traversed*/
 	times the amount of squares needed, which one is 25, then
 	multiplies the entire thing by the amount of squares needed,
 	*/
-  while(abs(SensorValue[LeftEncoder] < goalDistance))
+  while(SensorValue[LeftEncoder] < goalDistance)
   {
   	motor[BillandBob] = power;
   	motor[FredandJoseph] = power;
-	motor[Francis] = power;
-	motor[Xavier] = power;
   }
   motor[BillandBob] = 0;
   motor[FredandJoseph] = 0;
-  motor[Francis] = 0;
-  motor[Xavier] = 0;
   /*
   While loop allows for you to only move specified amount in the
   "coordinates" given when you call the function
@@ -80,7 +99,7 @@ will be traversed*/
 	times the amount of squares needed, which one is 25, then
 	multiplies the entire thing by the amount of squares needed,
 	*/
-  while(abs(SensorValue[LeftEncoder] > goalDistance))
+  while(SensorValue[LeftEncoder] > goalDistance)
   {
   	motor[BillandBob] = power;
   	motor[FredandJoseph] = power;
@@ -92,27 +111,27 @@ will be traversed*/
   "coordinates" given when you call the function
   */
 }
-/*void shoot(int shootTime)
+void shoot(int shootTime)
 /*
 This is a funtion to shoot our ball launcher
-
+*/
 {
 	motor[Rouf] = 60;
 	motor[Ivan] = 60;
 	wait1Msec(shootTime);
 }
-*/
+
 task autonomous()
 {
 	driveSquare(2,127);
 	//drives 2 squares a MAXIMUM EFFORT
 	drivesquareReverse(2,-127);
 	//drives backwards 2 squares at MAXIMUM EFFORT
-	turnAmount(-90);
+	turnRight(90);
 	//turns 90 degrees counterclockwise
 	driveSquare(2,127);
 	//drives 2 squares forward at MAXIMUM EFFORT
-	turnAmount(90);
+	turnLeft(90);
 	driveSquare(2,127);
 }
 task usercontrol()
