@@ -129,11 +129,14 @@ task autonomous()
 	//drives 2 squares a MAXIMUM EFFORT
 	drivesquareReverse(2,-127);
 	//drives backwards 2 squares at MAXIMUM EFFORT
+	SensorValue[Gyroscope] = 0;
 	turnLeft(90);
+	SensorValue[Gyscope] = 0;
 	//turns 90 degrees counterclockwise
 	driveSquare(1.5,127);
 	//drives 1.5 squares forward at MAXIMUM EFFORT
 	turnRight(90);
+	SensorValue[Gyroscope] = 0;
 	driveSquare(1,127);
 }
 task usercontrol()
